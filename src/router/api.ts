@@ -10,5 +10,8 @@ router.get('/universities/:id', apiController.getUniversitiesId);
 
 router.post('/universities', apiController.postUniversites);
 
+router.put('/universities/:id', apiController.updateUniversities);
+
+router.delete('/universities/:id', apiController.deleteUniversities);
 
 export default router;

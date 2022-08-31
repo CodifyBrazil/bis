@@ -120,3 +120,39 @@ export const postUniversites = async (req: Request, res: Response) =>{
             res.json(error);
         }
 }
+
+export const updateUniversities = async (req: Request, res: Response) =>{
+    let { id } = req.params;
+    let { name, domains, web_pages } = req.body;
+
+    let universities = await Universities.findById(id);
+
+    if(universities){
+        universities.name = name;
+        universities.domains = domains;
+        universities.web_pages = web_pages;
+
+        universities.save();
+
+        res.json({ universities });
+    }
+    else{
+        res.json({error: 'Id da universidade nao encontrado.'});
+    }
+}
+export const deleteUniversities = async (req: Request, res: Response) =>{
+    let { id } = req.params;
+
+    let universities = await Universities.findById(id);
+
+    if(universities){
+        await Universities.deleteMany({
+            _id: id
+        });
+        
+        res.json({success: 'Deletado com sucesso...'});
+    }
+    else{
+        res.json({error: 'ID nao encontrado.'});
+    }
+}
