@@ -4,7 +4,7 @@ import Universities from '../models/universities';
 import {mountJsonAllUniversities, verifyData} from '../helpers/helper';
 
 export const ping = (req: Request, res: Response) =>{
-    res.json({pong: true});
+    res.status(200).json({pong: true});
 }
 
 export const saveAllUniversits = async (req: Request, res: Response) =>{
@@ -41,9 +41,9 @@ export const saveAllUniversits = async (req: Request, res: Response) =>{
         }
         console.log('Fim...')
         let ok = {ok: 'Todos dados salvos com sucesso ...'};
-        res.json(ok);
+        res.status(200).json(ok);
     }catch(e){
-            res.json(`error: ${e}`);
+            res.status(400).json(`error: ${e}`);
         }
 }
 
@@ -63,15 +63,13 @@ export const universities = async (req: Request, res: Response) =>{
 
         data = mountJsonAllUniversities(universites);
 
-        res.json(data);
-
     }
     else{
         let allUniversities = await Universities.find({});
         data = mountJsonAllUniversities(allUniversities);
     }
     
-    res.json(data);
+    res.status(200).json(data);
 }
 
 export const getUniversitiesId = async (req: Request, res: Response) =>{
@@ -81,7 +79,7 @@ export const getUniversitiesId = async (req: Request, res: Response) =>{
         _id: id
     });
 
-    res.json(queryUnivisities);
+    res.status(200).json(queryUnivisities);
 }
 
 export const postUniversites = async (req: Request, res: Response) =>{
@@ -96,9 +94,9 @@ export const postUniversites = async (req: Request, res: Response) =>{
 
         if(verifyDuplicity.length >= 1){
             let error = {
-                error: 'Ja existe essa informacao em nosso banco de dados'
+                error: 'Ja existe essas informacao em nosso banco de dados'
             }
-            res.json(error);
+            res.status(400).json(error);
         }
         else{
             await Universities.create({
@@ -110,14 +108,14 @@ export const postUniversites = async (req: Request, res: Response) =>{
                 alpha_two_code: data.alpha_two_code
             });
             let result = {success: 'Criado com sucesso...'};
-            res.json(result);
+            res.status(200).json(result);
             }
         }
         else{
             let error = {
                 error: 'Faltou algum dado'
             }
-            res.json(error);
+            res.status(400).json(error);
         }
 }
 
@@ -134,10 +132,10 @@ export const updateUniversities = async (req: Request, res: Response) =>{
 
         universities.save();
 
-        res.json({ universities });
+        res.status(200).json({ universities });
     }
     else{
-        res.json({error: 'Id da universidade nao encontrado.'});
+        res.status(400).json({error: 'Id da universidade nao encontrado.'});
     }
 }
 export const deleteUniversities = async (req: Request, res: Response) =>{
@@ -150,9 +148,9 @@ export const deleteUniversities = async (req: Request, res: Response) =>{
             _id: id
         });
         
-        res.json({success: 'Deletado com sucesso...'});
+        res.status(200).json({success: 'Deletado com sucesso...'});
     }
     else{
-        res.json({error: 'ID nao encontrado.'});
+        res.status(400).json({error: 'ID nao encontrado.'});
     }
 }
