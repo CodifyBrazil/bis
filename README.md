@@ -142,19 +142,11 @@ Nós usamos [git](https://git-scm.com/) para controle de versão. Para as versõ
 
 ## ✒️ Autores
 
-Mencione todos aqueles que ajudaram a levantar o projeto desde o seu início
-
 * **Rafael Guilber** - *Construcao* - [CodifyBrazil](https://github.com/codifybrazil)
 
 ## 📄 Licença
 
 Este projeto está sob a licença (sem licença) - veja o arquivo [LICENSE.md](https://github.com/codifybrazil/bis/licenca) para detalhes.
-
-## 🎁 Expressões de gratidão
-
-* Conte a outras pessoas sobre este projeto 📢;
-* Um agradecimento publicamente 🫂;
-* etc.
 
 
 ---
